@@ -1,0 +1,154 @@
+.root {
+     -fx-font-smoothing-type: lcd;
+}
+
+.label {
+    -fx-font-size: 32px;
+    -fx-text-fill: #232323;
+}
+
+.text-input {
+	-fx-font-size: 20px;
+	-fx-pref-width: 200;
+    -fx-pref-height: 50;
+}
+
+.text-input:disabled {
+	-fx-opacity: 1.0;
+}
+
+#party {
+	-fx-pref-width: 500;
+}
+
+#help {
+	-fx-font-size: 16px;
+}
+
+.toggle-button {
+	-fx-pref-width: 100;
+    -fx-pref-height: 50;
+}
+
+#sell {
+	-fx-pref-width: 100;
+}
+
+.spinner {
+	-fx-font-size: 20px;
+	-fx-pref-width: 200;
+    -fx-pref-height: 50;
+}
+
+#title {
+	-fx-font-size: 64px;
+	-fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+#sellBut {
+	-fx-font-size: 32px;
+}
+
+#sellBut:hover {
+	-fx-font-size: 33px;
+}
+
+#mark .label {
+	-fx-font-size: 12px;
+    -fx-text-fill: #cecece;
+}
+
+#mark {
+	-fx-font-size: 12px;
+    -fx-text-fill: #cecece;
+}
+
+#logged .label {
+	-fx-font-size: 16px;
+    -fx-text-fill: #cecece;
+}
+
+#logged {
+	-fx-border-color: #eaffff;
+    -fx-border-insets: 5;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+}
+
+#menu-but {
+	-fx-font-size: 22px;
+	-fx-pref-width: 600;
+}
+
+.button {
+	-fx-font-size: 18px;
+	-fx-pref-width: 300;
+    -fx-text-fill: #383838;
+    -fx-background-color: linear-gradient( #808080, #ccd7c8 );
+}
+
+.button:hover {
+	-fx-font-size: 20px;
+    -fx-background-color: linear-gradient( #ccd7c8, #808080 );
+}
+
+#procBut {
+	-fx-font-size: 20px;
+	-fx-min-width: 100px;
+	-fx-min-height: 100px;
+	-fx-max-height: 140px;
+}
+
+#procBut:hover {
+	-fx-font-size: 22px;
+}
+
+.tooltip {
+    -fx-font-size: 12px;
+    -fx-text-fill: #cecece;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+#dialog .label {
+	-fx-font-size: 20px;
+}
+
+.menu-bar .label {
+	-fx-font-size: 14px;
+}
+
+.menu:hover {
+	-fx-font-size: 16px;
+	-fx-background-color: #c0c0c0;
+}
+
+.menu:showing {
+	-fx-font-size: 16px;
+	-fx-background-color: #c0c0c0;
+}
+
+.menu .label {
+	-fx-font-size: 14px;
+	-fx-text-fill: #373737;
+}
+
+.menu-item:focused {
+	-fx-font-size: 20px;
+	-fx-background-color: #c0c0c0;
+}
+
+#Pane {
+	-fx-border-color: #a8a8a8;
+    -fx-border-insets: 5;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0.5;
+}
+
+#main-tab
+{
+    -fx-tab-min-width:160px;
+}

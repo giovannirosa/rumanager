@@ -1,0 +1,61 @@
+package view;
+
+import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+
+public class Inicial extends Stage {
+	
+	BorderPane geralPanel = new BorderPane();
+	public static TabPane tabPane = new TabPane();
+	
+	MenuBar menuBar = new MenuBar();
+	
+	public MenuItem menuHelp = new MenuItem("Ajuda");
+	public MenuItem menuExit = new MenuItem("Sair");
+	Menu menuOptions = new Menu("Opções");
+	
+	public MenuItem menuRec = new MenuItem("Receita");
+	Menu menuReg = new Menu("Cadastrar");
+	
+	Scene scene;
+	
+	private static Inicial modal;
+	
+	public static Inicial getModal() {
+		return modal;
+	}
+	
+
+	public Inicial() {
+		modal = this;
+		this.setTitle("RU Manager");
+		this.setMaximized(true);
+		this.setResizable(false);
+		
+		
+		
+		
+		menuOptions.getItems().addAll(menuHelp, menuExit);
+		menuReg.getItems().addAll(menuRec);
+
+		menuBar.getMenus().addAll(menuReg,menuOptions);
+		
+		
+		geralPanel.setCenter(tabPane);
+		
+		scene = new Scene(new VBox());
+		((VBox)scene.getRoot()).getChildren().addAll(menuBar,geralPanel);
+        this.setScene(scene);
+	}
+	
+	private void setActions() {
+		
+	}
+}

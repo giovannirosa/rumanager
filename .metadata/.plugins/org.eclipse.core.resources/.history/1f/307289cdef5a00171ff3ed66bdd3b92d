@@ -1,0 +1,16 @@
+package view.pane;
+
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import model.table.TableModel;
+import view.table.ItemTable;
+import view.utils.UtilPane;
+
+public class IngPane extends Stage {
+	
+	VBox geralPane = new VBox();
+
+	public IngPane(ItemTable table) {
+		super(table, null);
+	}
+}

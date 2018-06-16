@@ -1,0 +1,14 @@
+package controller.database;
+
+import java.io.File;
+
+import view.utils.Factory;
+
+public class RefDB extends Database {
+	
+	public RefDB() {
+		table = "rec";
+		file = new File (Factory.RU_PATH+"\\"+table+".txt");
+		checkDatabase();
+	}
+}

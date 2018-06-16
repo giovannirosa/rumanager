@@ -1,0 +1,21 @@
+package view.pane;
+
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class RecViewPane extends Stage {
+	
+	VBox geralPane = new VBox(20);
+	
+	Label idLabel = new Label("ID:");
+	Label nomeLabel = new Label("Nome:");
+	Label modoLabel = new Label("Modo de Preparo:");
+	Label porcLabel = new Label("Porções:");
+	Label calorLabel = new Label("Valor Calórico:");
+	Label ingLabel = new Label("Ingredientes:");
+	
+	public RecViewPane() {
+		
+	}
+}

@@ -1,0 +1,16 @@
+package view.utils;
+
+import javafx.geometry.Insets;
+import javafx.scene.layout.VBox;
+
+public class HeaderPane extends VBox {
+	
+	LogoPane logoPane = new LogoPane(200,200);
+	TitlePane titlePane = new TitlePane();
+	
+	public HeaderPane() {
+		this.setSpacing(10);
+		this.setPadding(new Insets(20));
+		this.getChildren().addAll(logoPane,titlePane);
+	}
+}

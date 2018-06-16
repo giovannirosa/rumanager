@@ -1,0 +1,24 @@
+package controller.database;
+
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Model;
+
+public abstract class Database {
+	
+	protected String table;
+	List<Model> records = new ArrayList<>();
+	
+	
+	protected boolean save() {
+		Path path = Paths.get("");
+		
+		Files.write(path, records, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+	}
+}

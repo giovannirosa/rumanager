@@ -1,0 +1,59 @@
+package model.table;
+
+import javafx.beans.property.SimpleStringProperty;
+
+public class TIngModel implements TableModel {
+
+	private SimpleStringProperty id;
+	private SimpleStringProperty name;
+	private SimpleStringProperty qtde;
+	private SimpleStringProperty unidade;
+	
+	public TIngModel(int i, String n, int q) {
+		id = new SimpleStringProperty(Integer.toString(i));
+		name = new SimpleStringProperty(n);
+		qtde = new SimpleStringProperty(Integer.toString(q));
+	}
+	
+	public TIngModel() {
+		id = new SimpleStringProperty("");
+		name = new SimpleStringProperty("");
+		qtde = new SimpleStringProperty("");
+	}
+
+	public String getId() {
+		return id.get();
+	}
+
+	public void setId(String id) {
+		this.id.set(id);
+	}
+
+	public String getName() {
+		return name.get();
+	}
+
+	public void setName(String name) {
+		this.name.set(name);
+	}
+
+	public String getQtde() {
+		return qtde.get();
+	}
+
+	public void setQtde(String value) {
+		this.qtde.set(value);
+	}
+
+	public SimpleStringProperty getUnidade() {
+		return unidade;
+	}
+
+	public void setUnidade(SimpleStringProperty unidade) {
+		this.unidade = unidade;
+	}
+
+	public String getDesc() {
+		return name.get();
+	}
+}

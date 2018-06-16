@@ -1,0 +1,48 @@
+package view.tabs;
+
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import model.table.TRecModel;
+import view.Main;
+import view.table.RecTable;
+import view.utils.Factory;
+
+public class RefTab extends AbstractTab {
+	
+	
+	public static RecTable recTable1 = new RecTable();
+	
+	Button incBut = new Button("Incluir Receita", new ImageView(Factory.getButIcon("restaurant.png")));
+	Button finBut = new Button("Finalizar Refeição", new ImageView(Factory.getButIcon("share.png")));
+	
+
+	public RefTab(String title) {
+		super(title, null);
+		
+		setActions();
+		
+		setTable(recTable1);
+		initUI();
+		
+		buttonPane.getChildren().clear();
+		buttonPane.getChildren().addAll(incBut,finBut,closeBut);
+		
+		Main.recControl.loadTable(recTable1.getData());
+	}
+	
+	private void setActions() {
+		incBut.setOnAction(e -> {
+			if (!checkSelection())
+				return;
+			
+			TRecModel r = (TRecModel) recTable1.getSelectionModel().getSelectedItem();
+			
+			if (r.getSel().equals("X")) {
+				r.setSel("");
+			} else {
+				r.setSel("X");
+			}
+			refreshUITable();
+		});
+	}
+}

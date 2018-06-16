@@ -1,0 +1,12 @@
+package view.tabs;
+
+import controller.Control;
+
+public class RecTab extends AbstractTab {
+
+	public RecTab(String title, Control control) {
+		super(title, control);
+		// TODO Auto-generated constructor stub
+	}
+
+}

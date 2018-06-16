@@ -1,0 +1,53 @@
+package view.tabs;
+
+import controller.Actions;
+import controller.Actions.Action;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import view.utils.HeaderPane;
+
+public class InitTab extends Tab {
+	
+	VBox geralPane = new VBox(20);
+	GridPane buttonPane = new GridPane();
+	VBox buttonPane2 = new VBox(20);
+	HeaderPane headerPane = new HeaderPane();
+	
+	Button recBut = new Button("Cadastrar Receita");
+	Button estBut = new Button("Atualizar Estoque");
+	Button refBut = new Button("Montar Refeição");
+	Button exitBut = new Button("Sair");
+	
+	public InitTab() {
+		this.setText("RU Manager");
+		this.setContent(geralPane);
+		this.setClosable(false);
+		
+		setActions();
+		
+		buttonPane.setPadding(new Insets(20));
+		buttonPane.setAlignment(Pos.CENTER);
+		buttonPane.setVgap(5);
+		buttonPane.add(recBut, 0, 0);
+		buttonPane.add(estBut, 0, 1);
+		buttonPane.add(refBut, 0, 2);
+		
+		buttonPane2.setId("menu-but");
+		
+		buttonPane2.setAlignment(Pos.CENTER);
+		buttonPane2.getChildren().addAll(buttonPane,exitBut);
+		
+		geralPane.setAlignment(Pos.CENTER);
+		geralPane.getChildren().addAll(headerPane,buttonPane2);
+	}
+	
+	private void setActions() {
+		recBut.setOnAction(Actions.getAction(Action.RECEITA));
+		estBut.setOnAction(Actions.getAction(Action.ITEM));
+		exitBut.setOnAction(Actions.getAction(Action.SAIR));
+	}
+}

@@ -1,0 +1,23 @@
+package controller;
+
+import javafx.collections.ObservableList;
+import model.Ingrediente;
+import model.Model;
+import model.table.TIngModel;
+import model.table.TableModel;
+
+public class IngControl extends Control {
+
+	@Override
+	public void loadTable(ObservableList<TableModel> data) {
+		data.clear();
+		if (map.isEmpty()) {
+			data.add(new TIngModel());
+			return;
+		}
+		for (Model m : map.values()) {
+			Ingrediente i = (Ingrediente) m;
+			data.add(new TIngModel(i.getId(), i.getNome(), i.getQtde(), i.getUnidade()));
+		}
+	}
+}

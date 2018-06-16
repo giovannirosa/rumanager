@@ -1,0 +1,38 @@
+package view.tabs;
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import view.Main;
+import view.table.RecTable;
+
+public class RefTab extends AbstractTab {
+	
+	
+	public static RecTable recTable1 = new RecTable();
+	
+	Button incBut = new Button("Incluir Receita");
+	Button finBut = new Button("Finalizar Refeição");
+	
+
+	public RefTab(String title) {
+		super(title, null);
+		
+		setActions();
+		
+		setTable(recTable1);
+		initUI();
+		
+		buttonPane.getChildren().clear();
+		buttonPane.getChildren().addAll(incBut,finBut);
+		
+		Main.recControl.loadTable(recTable1.getData());
+	}
+	
+	private void setActions() {
+		incBut.setOnAction(e -> {
+			if (!checkSelection())
+				return;
+		});
+	}
+}

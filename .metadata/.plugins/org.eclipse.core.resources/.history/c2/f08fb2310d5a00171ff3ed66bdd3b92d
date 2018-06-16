@@ -1,0 +1,34 @@
+package controller;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
+public class Actions {
+	
+	public enum Action {
+		RECEITA, INGREDIENTE, REFEIÇÃO, EXIT;
+	}
+	
+	public static EventHandler<ActionEvent> getAction(Action act) {
+		switch (act) {
+		case RECEITA:
+			return e -> {
+				
+			};
+		case INGREDIENTE:
+			return e -> {
+				
+			};
+		case REFEIÇÃO:
+			return e -> {
+				
+			};
+		case EXIT:
+			return e -> {
+				
+			};
+		default:
+			return null;
+		}
+	}
+}

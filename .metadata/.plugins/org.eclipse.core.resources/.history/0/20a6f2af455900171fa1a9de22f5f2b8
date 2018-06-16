@@ -1,0 +1,17 @@
+package view.utils;
+
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+
+public class TitlePane extends VBox {
+	
+	Label markLabel = new Label("Dionysus");
+	Label subLabel = new Label("The ultimate program for sales!");
+	
+	public TitlePane() {
+		this.setSpacing(5);
+		this.setAlignment(Pos.CENTER);
+		this.getChildren().addAll(markLabel,subLabel);
+		markLabel.setId("title");
+	}
+}

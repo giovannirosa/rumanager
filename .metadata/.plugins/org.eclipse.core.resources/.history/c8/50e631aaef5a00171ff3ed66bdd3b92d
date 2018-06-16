@@ -1,0 +1,32 @@
+package view.pane;
+
+import model.table.TableModel;
+import view.table.ItemTable;
+import view.table.Table;
+import view.tabs.AbstractTab;
+import view.utils.UtilPane;
+
+public class IngPane extends UtilPane {
+
+	public IngPane(ItemTable table) {
+		super(table, null);
+	}
+
+	@Override
+	public void addMode() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void editMode(TableModel model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+}

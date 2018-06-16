@@ -1,0 +1,20 @@
+package controller.database;
+
+import java.util.Map;
+
+import model.Model;
+
+public class RecDB extends Database {
+
+	@Override
+	public void get(Map<Integer, Model> map) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void set(Map<Integer, Model> map) {
+		// TODO Auto-generated method stub
+		
+	}
+}

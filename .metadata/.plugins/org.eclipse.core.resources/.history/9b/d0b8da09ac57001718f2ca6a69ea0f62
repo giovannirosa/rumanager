@@ -1,0 +1,14 @@
+package model;
+
+public class Ingrediente {
+	
+	private int qtde;
+	private String unidade;
+	
+	public Ingrediente(int qtde, String unidade) {
+		super();
+		this.qtde = qtde;
+		this.unidade = unidade;
+	}
+
+}

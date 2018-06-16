@@ -1,0 +1,58 @@
+package controller.database;
+
+import java.io.File;
+import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import model.Ing;
+import model.Model;
+import model.Rec;
+import view.utils.Factory;
+
+public class RecDB extends Database {
+	
+	public RecDB() {
+		table = "rec";
+		file = new File (Factory.RU_PATH+"\\"+table+".txt");
+		checkDatabase();
+	}
+
+	@Override
+	public void get(Map<Integer, Model> map) {
+		map.clear();
+		
+		for (String line : records) {
+			JSONObject obj;
+			try {
+				obj = new JSONObject(line);
+				map.put(obj.getInt("id"), new Rec(obj.getInt("id"), obj.getString("nome"),
+						obj.getInt("qtde"), obj.getString("unidade")));
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void set(Map<Integer, Model> map) {
+		records.clear();
+		
+		for (Model m : map.values()) {
+			Rec i = (Ing) m;
+			JSONObject obj = new JSONObject();
+			
+			try {
+				obj.put("id", i.getId());
+				obj.put("nome", i.getNome());
+				obj.put("qtde", i.getQtde());
+				obj.put("unidade", i.getUnidade());
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			
+			records.add(obj.toString());
+		}
+	}
+}

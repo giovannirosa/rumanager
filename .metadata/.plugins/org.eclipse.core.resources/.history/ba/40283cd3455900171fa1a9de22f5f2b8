@@ -1,0 +1,23 @@
+package view.utils;
+
+import javafx.geometry.Pos;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.HBox;
+
+public class HeaderPane extends HBox {
+	
+	LogoPane logoPane = new LogoPane(100,100);
+	TitlePane titlePane = new TitlePane();
+	
+	public HeaderPane() {
+		this.setHgap(60);
+		this.add(logoPane, 0, 0);
+		this.add(titlePane, 1, 0);
+		
+		
+		this.getColumnConstraints().add(new ColumnConstraints(Factory.screen.getWidth()*0.15));
+		this.getColumnConstraints().add(new ColumnConstraints(Factory.screen.getWidth()*0.586));
+		this.getColumnConstraints().add(new ColumnConstraints(Factory.screen.getWidth()*0.15));
+	}
+
+}

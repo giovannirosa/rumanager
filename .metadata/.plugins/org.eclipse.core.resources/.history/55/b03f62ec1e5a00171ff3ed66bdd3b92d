@@ -1,0 +1,18 @@
+package view.tabs;
+
+import controller.Control;
+import javafx.scene.control.Tab;
+import view.Main;
+import view.pane.IngPane;
+import view.table.IngTable;
+
+public class IngTab extends AbstractTab {
+	
+	IngTable itTable = new IngTable();
+	IngPane itemPane = new IngPane(itTable,this);
+
+	public IngTab(String title) {
+		super(title, Main.ingControl);
+	}
+
+}

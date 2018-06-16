@@ -1,0 +1,113 @@
+package controller;
+
+import java.sql.SQLException;
+import java.util.Map;
+
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
+import controller.database.Database;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
+import model.Model;
+import model.table.TableModel;
+import view.utils.Factory;
+
+public abstract class Control {
+	
+	Database db;
+	Map<Integer,Model> map;
+	
+	protected void setDatabase(Database db) {
+		this.db = db;
+	}
+	
+	protected void setMap(Map<Integer,Model> map) {
+		this.map = map;
+	}
+	
+	public abstract void loadTable(ObservableList<TableModel> data);
+	
+	public Map<Integer,Model> getMap() {
+		return map;
+	}
+
+	public Model get(int id) {
+		return map.get(id);
+	}
+	
+	public void loadData() {
+		map.clear();
+		Map<Integer,Model> aux = db.listAll();
+		for(Model m : aux.values()) {
+			map.put(m.getId(), m);
+		}
+	}
+	
+	public void refreshBox(ComboBox<String> box) {
+		ObservableList<String> options = FXCollections.observableArrayList();
+		for (Model i : map.values()) {
+			options.add(i.getDesc());
+		}
+		box.setItems(options);
+		box.getSelectionModel().select(0);
+	}
+	
+	public int getId(String n) {
+		return db.selectId(n);
+	}
+	
+	public boolean truncate() {
+		boolean b = false;
+		try {
+			b = db.truncate();
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			Factory.showWarning("Esta tabela não pode ser limpada, pois algum registro está sendo usado!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if (b)
+			map.clear();
+		if (map.isEmpty())
+			try {
+				db.resetId();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return b;
+	}
+	
+	public boolean remove(int id) {
+		boolean b = false;
+		try {
+			b = db.delete(id);
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			Factory.showWarning("Este registro não pode ser deletado, pois está sendo usado!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if (b)
+			map.remove(id);
+		if (map.isEmpty())
+			try {
+				db.resetId();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return b;
+	}
+	
+	public boolean insert(Model m) {
+		boolean b = db.insert(m);
+		if (b)
+			loadData();
+		return b;
+	}
+	
+	public boolean update(Model m) {
+		boolean b = db.update(m);
+		if (b)
+			loadData();
+		return b;
+	}
+}

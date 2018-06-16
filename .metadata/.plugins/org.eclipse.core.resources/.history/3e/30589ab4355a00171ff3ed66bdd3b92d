@@ -1,0 +1,59 @@
+package controller.database;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import model.Model;
+import view.utils.Factory;
+
+public abstract class Database {
+	
+	protected String table;
+	List<String> records = new ArrayList<>();
+	static File file;
+	
+	public static void checkDatabase(String table) {
+		try {
+			if (!file.exists()) {
+				file.createNewFile();
+				Factory.log(table+" table created!");
+			}
+		} catch (IOException ex) {
+		    ex.printStackTrace();
+		}
+	}
+	
+	public abstract void get(Map<Integer,Model> map);
+	public abstract void set(Map<Integer,Model> map);
+	
+	public boolean save() {
+		try {
+			Files.write(Paths.get(file.getAbsolutePath()), records, Charset.forName("UTF-8"),
+					StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public boolean load() {
+		records.clear();
+		try {
+			Files.lines(Paths.get(file.getAbsolutePath()), Charset.forName("UTF-8")).forEach((l)->records.add(l));
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+}

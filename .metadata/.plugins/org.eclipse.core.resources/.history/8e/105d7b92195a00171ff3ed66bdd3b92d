@@ -1,0 +1,37 @@
+package controller.database;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import model.Ingrediente;
+import model.Model;
+
+public class IngDB extends Database {
+
+	@Override
+	public Map<Integer, Model> get() {
+		Map<Integer, Model> map = new HashMap<>();
+		
+		for (String line : records) {
+			JSONObject obj;
+			try {
+				obj = new JSONObject(line);
+				map.put(obj.getInt("id"), new Ingrediente(obj.getString("nome"),
+						obj.getInt("qtde"), obj.getString("unidade")));
+			} catch (JSONException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+		
+		return map;
+	}
+
+	@Override
+	public void set(Map<Integer, Model> map) {
+		records.clear();
+	}
+}

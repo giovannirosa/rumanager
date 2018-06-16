@@ -1,0 +1,11 @@
+package controller;
+
+import java.util.List;
+
+import model.Receita;
+
+public class RU {
+	
+	List<Receita> listaDeReceitas;
+
+}

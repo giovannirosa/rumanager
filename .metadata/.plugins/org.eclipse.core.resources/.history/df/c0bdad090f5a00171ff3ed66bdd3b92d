@@ -1,0 +1,62 @@
+package model.table;
+
+import java.text.DecimalFormat;
+
+import javafx.beans.property.SimpleStringProperty;
+
+public class TIngModel implements TableModel {
+
+	private SimpleStringProperty id;
+	private SimpleStringProperty name;
+	private SimpleStringProperty qtde;
+	private boolean combo;
+	
+	public TIngModel(int i, String n, double v, boolean c) {
+		id = new SimpleStringProperty(Integer.toString(i));
+		name = new SimpleStringProperty(n);
+		qtde = new SimpleStringProperty(new DecimalFormat("##.00").format(v));
+		setCombo(c);
+	}
+	
+	public TIngModel() {
+		id = new SimpleStringProperty("");
+		name = new SimpleStringProperty("");
+		qtde = new SimpleStringProperty("");
+	}
+
+	public String getId() {
+		return id.get();
+	}
+
+	public void setId(String id) {
+		this.id.set(id);
+	}
+
+	public String getName() {
+		return name.get();
+	}
+
+	public void setName(String name) {
+		this.name.set(name);
+	}
+
+	public String getValue() {
+		return qtde.get();
+	}
+
+	public void setValue(String value) {
+		this.qtde.set(value);
+	}
+
+	public String getDesc() {
+		return name.get();
+	}
+
+	public boolean isCombo() {
+		return combo;
+	}
+
+	public void setCombo(boolean combo) {
+		this.combo = combo;
+	}
+}

@@ -1,0 +1,18 @@
+package model;
+
+public class Receita {
+	
+	private String nome;
+	private String modoPreparo;
+	private int noPorcoes;
+	private int valorCalorico;
+	
+	public Receita(String nome, String modoPreparo, int noPorcoes, int valorCalorico) {
+		super();
+		this.nome = nome;
+		this.modoPreparo = modoPreparo;
+		this.noPorcoes = noPorcoes;
+		this.valorCalorico = valorCalorico;
+	}
+
+}

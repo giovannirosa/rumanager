@@ -1,0 +1,25 @@
+package view.pane;
+
+import model.table.TableModel;
+import view.utils.UtilPane;
+
+public class FinalPane extends UtilPane {
+	
+	
+
+	public FinalPane() {
+		super(null, null);
+		
+		
+	}
+
+	@Override
+	public void addMode() {}
+
+	@Override
+	public void editMode(TableModel model) {}
+
+	@Override
+	public void clear() {}
+
+}

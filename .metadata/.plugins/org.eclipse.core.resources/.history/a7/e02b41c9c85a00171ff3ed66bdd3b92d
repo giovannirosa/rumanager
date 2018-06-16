@@ -1,0 +1,51 @@
+package controller;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import view.utils.Factory;
+import static view.Main.tabPane;
+import static view.Main.ingTab;
+import static view.Main.recTab;
+
+
+public class Actions {
+	
+	public enum Action {
+		RECEITA, INGREDIENTE, REFEIÇÃO, AJUDA, SAIR;
+	}
+	
+	public static EventHandler<ActionEvent> getAction(Action act) {
+		switch (act) {
+		case RECEITA:
+			return e -> {
+				if (tabPane.getTabs().contains(recTab)) {
+					tabPane.getSelectionModel().select(recTab);
+					return;
+				}
+				tabPane.getTabs().add(recTab);
+				tabPane.getSelectionModel().selectLast();
+			};
+		case INGREDIENTE:
+			return e -> {
+				if (tabPane.getTabs().contains(ingTab)) {
+					tabPane.getSelectionModel().select(ingTab);
+					return;
+				}
+				tabPane.getTabs().add(ingTab);
+				tabPane.getSelectionModel().selectLast();
+			};
+		case REFEIÇÃO:
+			return e -> {
+				
+			};
+		case SAIR:
+			return e -> {
+				if (Factory.showConfirmation("Tem certeza que deseja sair?")) {		
+					System.exit(0);
+				}
+			};
+		default:
+			return null;
+		}
+	}
+}

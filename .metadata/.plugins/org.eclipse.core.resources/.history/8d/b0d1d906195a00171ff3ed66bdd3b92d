@@ -1,0 +1,54 @@
+package model;
+
+public class Ingrediente implements Model {
+	
+	private int id;
+	private String nome;
+	private int qtde;
+	private String unidade;
+	
+	ItemEstoque it;
+	
+	public Ingrediente(int qtde, String unidade) {
+		super();
+		this.qtde = qtde;
+		this.unidade = unidade;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public int getQtde() {
+		return qtde;
+	}
+
+	public void setQtde(int qtde) {
+		this.qtde = qtde;
+	}
+
+	public String getUnidade() {
+		return unidade;
+	}
+
+	public void setUnidade(String unidade) {
+		this.unidade = unidade;
+	}
+
+	@Override
+	public String getDesc() {
+		return nome;
+	}
+}

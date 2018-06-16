@@ -1,0 +1,44 @@
+package view.pane;
+
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import model.table.TItemModel;
+import model.table.TableModel;
+import view.Main;
+import view.table.ItemTable;
+import view.utils.UtilPane;
+
+public class IngPane extends UtilPane {
+	
+	Label nomeLabel = new Label("Nome:");
+	Label modoLabel = new Label("Quantidade:");
+	Label idLabel = new Label("Unidade:");
+	
+	ComboBox<String> itemBox = new ComboBox<>();
+
+	public IngPane(ItemTable table) {
+		super(table, null);
+		
+		Main.itemControl.refreshBox(itemBox);
+		
+		confirmBut.setOnAction(e -> {
+			table.getItems().add(new TItemModel());
+		});
+	}
+
+	@Override
+	public void addMode() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void editMode(TableModel model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clear() {
+	}
+}

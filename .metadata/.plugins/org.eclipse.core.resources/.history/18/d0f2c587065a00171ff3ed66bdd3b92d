@@ -1,0 +1,9 @@
+package view.tabs;
+
+import view.utils.HeaderPane;
+
+public class InitTab {
+	
+	HeaderPane headerPane = new HeaderPane();
+
+}

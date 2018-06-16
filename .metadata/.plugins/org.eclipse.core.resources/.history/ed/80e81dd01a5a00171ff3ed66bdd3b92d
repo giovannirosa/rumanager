@@ -1,0 +1,13 @@
+package controller;
+
+import javafx.collections.ObservableList;
+import model.table.TableModel;
+
+public class IngControl extends Control {
+
+	@Override
+	public void loadTable(ObservableList<TableModel> data) {
+		
+	}
+
+}

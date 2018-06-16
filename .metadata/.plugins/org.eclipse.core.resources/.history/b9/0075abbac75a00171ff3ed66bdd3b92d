@@ -1,0 +1,40 @@
+package view.utils;
+
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import model.Ing;
+import model.table.TIngModel;
+import view.Main;
+import view.table.IngTable;
+
+public class IngUtilPane extends VBox {
+	
+	HBox buttonPane = new HBox(20);
+	
+	Button addBut = new Button("Adicionar");
+	Button delBut = new Button("Deletar");
+	
+	public static ComboBox<String> ingBox = new ComboBox<>();
+	
+	IngTable ingTable;
+	
+	public IngUtilPane(IngTable table) {
+		ingTable = table;
+		Main.ingControl.refreshBox(ingBox);
+		
+		buttonPane.setAlignment(Pos.CENTER);
+		buttonPane.getChildren().addAll(ingBox,addBut,delBut);
+		
+		addBut.setOnAction(e -> {
+			Ing i = (Ing) Main.ingControl.get(ingBox.getValue());
+			ingTable.getItems().add(new TIngModel(i.getNome(),i.getQtde(),i.getUnidade()));
+		});
+		
+		this.setAlignment(Pos.CENTER);
+		this.setSpacing(20);
+		this.getChildren().addAll(ingTable, buttonPane);
+	}
+}

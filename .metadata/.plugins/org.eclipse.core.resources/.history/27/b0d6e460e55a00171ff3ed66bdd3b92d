@@ -1,0 +1,65 @@
+package view.tabs;
+
+import javafx.scene.control.Button;
+import model.table.TIngModel;
+import model.table.TableModel;
+import view.Main;
+import view.pane.RecPane;
+import view.table.RecTable;
+
+public class RecTab extends AbstractTab {
+
+	RecTable itTable = new RecTable();
+	RecPane itemPane = new RecPane(itTable,this);
+	
+	Button viewBut = new Button();
+
+	public RecTab(String title) {
+		super(title, Main.recControl);
+		setTable(itTable);
+		setAddPane(itemPane);
+		initUI();
+		setActions();
+		Main.recControl.loadTable(itTable.getData());
+	}
+	
+	public void removeAddPane() {
+		geralPane.getChildren().remove(addPane);
+	}
+	
+	private void setActions() {
+		viewBut.setOnAction(e -> {
+			
+		});
+		addBut.setOnAction(e -> {
+			itemPane.addMode();
+			itemPane.clear();
+			addPane();
+		});
+		editBut.setOnAction(e -> {
+			if (!checkSelection())
+				return;
+			
+			itemPane.editMode(itTable.getSelectionModel().getSelectedItem());
+			addPane();
+		});
+		delBut.setOnAction(e -> {
+			if (!checkSelection())
+				return;
+			
+			TableModel model = table.getSelectionModel().getSelectedItem();
+			
+			if (!delete(model))
+				return;
+			
+			if (itTable.getItems().size() < 1)
+				itTable.getData().add(new TIngModel());
+			
+//			Screen.itemControl.refreshBox(Screen.storageTab.getPane().itemBox);
+//			Screen.itemControl.refreshBoxCombo(comboPane.itemBox);
+//			String log = Screen.userControl.getUser().getName()+" removed "+model.getDesc()+" from items!";
+//			System.out.println(log);
+//			Factory.log(log);
+		});
+	}
+}

@@ -1,0 +1,29 @@
+package controller.database;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import model.Model;
+
+public class IngDB extends Database {
+
+	@Override
+	public Map<Integer, Model> translate() {
+		Map<Integer, Model> map = new HashMap<>();
+		
+		for (String line : records) {
+			try {
+				JSONObject my_obj = new JSONObject(line);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		return map;
+	}
+}

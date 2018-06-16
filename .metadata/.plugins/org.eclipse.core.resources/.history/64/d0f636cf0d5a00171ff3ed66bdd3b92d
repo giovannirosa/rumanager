@@ -1,0 +1,46 @@
+package controller;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import view.Inicial;
+import view.utils.Factory;
+import static view.Inicial.tabPane;
+
+public class Actions {
+	
+	public enum Action {
+		RECEITA, INGREDIENTE, REFEIÇÃO, EXIT;
+	}
+	
+	public static EventHandler<ActionEvent> getAction(Action act) {
+		switch (act) {
+		case RECEITA:
+			return e -> {
+				
+			};
+		case INGREDIENTE:
+			return e -> {
+				if (tabPane.getTabs().contains(userTab)) {
+					tabPane.getSelectionModel().select(userTab);
+					return;
+				}
+				tabPane.getTabs().add(userTab);
+				tabPane.getSelectionModel().selectLast();
+				
+				System.out.println(userControl.getUser().getName()+" entered users section!");
+			};
+		case REFEIÇÃO:
+			return e -> {
+				
+			};
+		case EXIT:
+			return e -> {
+				if (Factory.showConfirmation("Tem certeza que deseja sair?")) {		
+					System.exit(0);
+				}
+			};
+		default:
+			return null;
+		}
+	}
+}

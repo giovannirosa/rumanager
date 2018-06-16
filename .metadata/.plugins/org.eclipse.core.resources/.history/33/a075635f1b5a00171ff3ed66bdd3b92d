@@ -1,0 +1,49 @@
+package controller;
+
+import java.util.Map;
+
+import controller.database.Database;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
+import model.Model;
+import model.table.TableModel;
+
+public abstract class Control {
+	
+	Database db;
+	Map<Integer,Model> map;
+	
+	public abstract void loadTable(ObservableList<TableModel> data);
+	
+	public Map<Integer,Model> getMap() {
+		return map;
+	}
+
+	public Model get(int id) {
+		return map.get(id);
+	}
+	
+	public void loadData() {
+		db.load();
+		map = db.get();
+	}
+	
+	public void saveData() {
+		db.set(map);
+		db.save();
+	}
+	
+	public void insert(Model m) {
+		
+	}
+	
+	public void refreshBox(ComboBox<String> box) {
+		ObservableList<String> options = FXCollections.observableArrayList();
+		for (Model i : map.values()) {
+			options.add(i.getDesc());
+		}
+		box.setItems(options);
+		box.getSelectionModel().select(0);
+	}
+}

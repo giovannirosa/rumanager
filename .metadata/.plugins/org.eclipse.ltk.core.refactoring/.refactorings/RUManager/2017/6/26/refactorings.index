@@ -1,0 +1,68 @@
+1498351693856	Rename type 'Inicial'
+1498351702365	Move compilation unit
+1498352336169	Move file
+1498352437531	Rename field 'DIONYSUS_PATH'
+1498353394420	Rename field 'menuAdmin'
+1498353406138	Rename field 'menuConfig'
+1498353750247	Move file
+1498353832715	Move file
+1498354130038	Move compilation unit
+1498438149022	Move file
+1498440246563	Delete element
+1498440324212	Rename type 'TItemModel'
+1498440374170	Encapsulate field 'id'
+1498440554267	Encapsulate field 'nome'
+1498440614548	Rename field 'value'
+1498440705735	Encapsulate field 'unidade'
+1498440936640	Rename field 'valueCol'
+1498441163081	Move compilation unit
+1498441457260	Move file
+1498445046265	Rename method 'translate'
+1498445797479	Rename type 'Inicial'
+1498446311749	Rename type 'ItemTable'
+1498446352456	Move compilation unit
+1498446508730	Rename type 'ItemPane'
+1498446647034	Rename type 'Ingrediente'
+1498447577820	Move files
+1498450544866	Copy compilation unit
+1498450554523	Copy compilation unit
+1498451148212	Encapsulate field 'id'
+1498451301170	Rename field 'qtdeCol'
+1498451312194	Rename field 'unidadeCol'
+1498451486964	Rename type 'Receita'
+1498451814314	Encapsulate field 'listaIngrediente'
+1498452130054	Rename local variable 'i'
+1498452371725	Rename local variable 'i'
+1498452410209	Copy compilation unit
+1498452444350	Rename field 'qtde'
+1498452454185	Rename field 'unidade'
+1498452459629	Rename field 'porcoes'
+1498452508039	Rename field 'modo'
+1498452512983	Rename field 'cal'
+1498452683325	Copy compilation unit
+1498452757060	Rename field 'qtdeSpin'
+1498452766531	Rename field 'qtdeLabel'
+1498452775084	Rename field 'unidadeLabel'
+1498520368971	Rename enum constant 'EXIT'
+1498533749240	Move file
+1498534130965	Encapsulate field 'preco'
+1498534146026	Rename type 'Ing'
+1498534165353	Rename type 'IngTable'
+1498534177097	Rename type 'IngTab'
+1498534277161	Rename type 'IngPane'
+1498534293896	Rename type 'IngDB'
+1498534301647	Rename type 'IngControl'
+1498534461465	Encapsulate field 'preco'
+1498534893122	Rename type 'TIngModel'
+1498534929821	Delete element
+1498535073995	Rename enum constant 'INGREDIENTE'
+1498535127003	Rename field 'ingControl'
+1498538729614	Delete element
+1498541376994	Delete element
+1498543422005	Rename type 'Refeicao'
+1498576056506	Encapsulate field 'sel'
+1498619165243	Delete element
+1498621580744	Delete element
+1498622463530	Delete element
+1498684960355	Copy compilation unit
+1498684985360	Delete element

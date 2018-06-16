@@ -1,0 +1,175 @@
+package view.pane;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.stage.Stage;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import view.Main;
+import view.table.IngTable;
+import view.table.RecTable;
+import view.tabs.RecTab;
+import view.utils.Factory;
+import view.utils.UtilPane;
+import model.*;
+import model.table.TRecModel;
+import model.table.TableModel;
+
+public class RecPane extends UtilPane {
+	Label idLabel = new Label("ID:");
+	Label nomeLabel = new Label("Nome:");
+	Label modoLabel = new Label("Modo de Preparo:");
+	Label porcLabel = new Label("Porções:");
+	Label calorLabel = new Label("Valor Calórico:");
+	Label ingLabel = new Label("Ingredientes:");
+	
+	Button modoBut = new Button("Visualizar Modo de Preparo");
+	Button ingBut = new Button("Visualizar Ingredientes");
+	
+	TextField idField = new TextField();
+	TextField nomeField = new TextField();
+	TextArea modoArea = new TextArea();
+	Spinner<Integer> porcSpin = new Spinner<>();
+	Spinner<Integer> calorSpin = new Spinner<>();
+	IngTable ingTable = new IngTable();
+	
+	Dialog<String> modoDialog = new Dialog<>();
+	Dialog<String> ingDialog = new Dialog<>();
+	
+	public RecPane(RecTable table, RecTab tab) {
+		super(table,tab);
+//		geralPane.setPrefWidth(1000);
+		
+		Main.ingControl.refreshBox(ingBox);
+		
+		Factory.configSpin(porcSpin, 1, 100000, 1);
+		Factory.configSpin(calorSpin, 1, 100000, 1);
+		
+		ingTable.getColumns().remove(0);
+		ingTable.setPrefWidth(800);
+		
+		modoArea.setPrefWidth(800);
+		modoArea.setPrefRowCount(20);
+		
+		configDialog(modoDialog,modoArea);
+		modoBut.setOnAction(e -> {
+			modoDialog.showAndWait();
+		});
+		
+		
+		
+		configDialog(ingDialog,ingTable);
+		ingBut.setOnAction(e -> {
+			ingDialog.showAndWait();
+		});
+		
+		setControl(Main.recControl);
+		
+		confirmBut.setOnAction(e -> {			
+			if (!validate())
+				return;
+			
+			int id;
+			if (table.getItems().isEmpty() || table.getItems().get(0).getId().equals(""))
+				id = 0;
+			else
+				id = Integer.parseInt(table.getItems().get(table.getItems().size()-1).getId());
+			
+			List<String> lista = new ArrayList<>();
+			for (TableModel m : ingTable.getItems()) {
+				lista.add(m.getId());
+			}
+			
+			Rec r = new Rec(id+1,nomeField.getText(),modoArea.getText(),porcSpin.getValue(),calorSpin.getValue(),lista);
+			
+			insert(r);
+			
+			this.close();
+		});
+	}
+	
+	private void configDialog(Dialog<String> dialog, Node content) {
+		Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+		stage.setMinWidth(500);
+		stage.getIcons().add(Factory.getButIcon("message.png"));
+		dialog.getDialogPane().setContent(content);
+		final ButtonType confirmButtonType = new ButtonType("OK", ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().add(confirmButtonType);
+	}
+	
+	private boolean validate() {
+		if (nomeField.getText().isEmpty()) {
+			Factory.showWarning("Por favor entre com o nome!");
+			return false;
+		}
+		if (modoArea.getText().isEmpty()) {
+			Factory.showWarning("Por favor entre com a unidade!");
+			return false;
+		}
+		if (ingTable.getItems().get(0).getId().equals("")) {
+			Factory.showWarning("Por favor entre com os ingredientes!");
+			return false;
+		}
+		return true;
+	}
+	
+	public void addMode() {
+		inputPane.getChildren().clear();
+		inputPane.add(nomeLabel, 0, 0);
+		inputPane.add(nomeField, 1, 0);
+		inputPane.add(porcLabel, 0, 1);
+		inputPane.add(porcSpin, 1, 1);
+		inputPane.add(calorLabel, 0, 2);
+		inputPane.add(calorSpin, 1, 2);
+		inputPane.add(modoLabel, 0, 3);
+		inputPane.add(modoBut, 1, 3);
+		inputPane.add(ingLabel, 0, 4);
+		inputPane.add(ingBut, 1, 4);
+	}
+	
+	public void editMode(TableModel abstractModel) {
+		TRecModel model = (TRecModel) abstractModel;
+		idField.setText(model.getId());
+		idField.setDisable(true);
+		
+		Rec r = (Rec) Main.recControl.get(Integer.parseInt(model.getId()));
+		
+		nomeField.setText(r.getNome());
+		porcSpin.getValueFactory().setValue(r.getNoPorcoes());
+		calorSpin.getValueFactory().setValue(r.getValorCalorico());
+		modoArea.setText(r.getModoPreparo());
+		
+		inputPane.getChildren().clear();
+		inputPane.add(idLabel, 0, 0);
+		inputPane.add(idField, 1, 0);
+		inputPane.add(nomeLabel, 0, 1);
+		inputPane.add(nomeField, 1, 1);
+		inputPane.add(porcLabel, 0, 2);
+		inputPane.add(porcSpin, 1, 2);
+		inputPane.add(calorLabel, 0, 3);
+		inputPane.add(calorSpin, 1, 3);
+		inputPane.add(modoLabel, 0, 4);
+		inputPane.add(modoArea, 1, 4);
+		inputPane.add(ingLabel, 0, 5);
+		inputPane.add(ingTable, 1, 5);
+	}
+	
+	public void clear() {
+		nomeField.clear();
+		porcSpin.getValueFactory().setValue(1);
+		calorSpin.getValueFactory().setValue(1);
+		modoArea.clear();
+		ingTable.getItems().clear();
+	}
+}

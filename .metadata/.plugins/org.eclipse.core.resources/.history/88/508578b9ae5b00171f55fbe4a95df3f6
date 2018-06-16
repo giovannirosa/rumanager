@@ -1,0 +1,24 @@
+package controller.database;
+
+import java.io.File;
+import java.util.Map;
+
+import model.Model;
+import view.utils.Factory;
+
+public class RefDB extends Database {
+	
+	public RefDB() {
+		table = "rec";
+		file = new File (Factory.RU_PATH+"\\"+table+".txt");
+		checkDatabase();
+	}
+
+	@Override
+	public void get(Map<Integer, Model> map) {
+	}
+
+	@Override
+	public void set(Map<Integer, Model> map) {
+	}
+}

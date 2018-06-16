@@ -1,0 +1,16 @@
+package controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import model.ItemEstoque;
+import model.Rec;
+
+public class RU {
+	
+	List<Rec> listaDeReceitas = new ArrayList<>();
+	List<ItemEstoque> estoque = new ArrayList<>();
+	
+	
+
+}

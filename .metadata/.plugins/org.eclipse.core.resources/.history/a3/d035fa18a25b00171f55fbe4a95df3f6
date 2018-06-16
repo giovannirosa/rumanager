@@ -1,0 +1,63 @@
+package controller;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import view.utils.Factory;
+import view.utils.HelpDialog;
+
+import static view.Main.tabPane;
+import static view.Main.itemTab;
+import static view.Main.recTab;
+import static view.Main.refTab;
+
+
+public class Actions {
+	
+	public enum Action {
+		RECEITA, ITEM, REFEIÇÃO, AJUDA, SAIR;
+	}
+	
+	public static EventHandler<?> getAction(Action act) {
+		switch (act) {
+		case RECEITA:
+			return e -> {
+				if (tabPane.getTabs().contains(recTab)) {
+					tabPane.getSelectionModel().select(recTab);
+					return;
+				}
+				tabPane.getTabs().add(recTab);
+				tabPane.getSelectionModel().selectLast();
+			};
+		case ITEM:
+			return e -> {
+				if (tabPane.getTabs().contains(itemTab)) {
+					tabPane.getSelectionModel().select(itemTab);
+					return;
+				}
+				tabPane.getTabs().add(itemTab);
+				tabPane.getSelectionModel().selectLast();
+			};
+		case REFEIÇÃO:
+			return e -> {
+				if (tabPane.getTabs().contains(refTab)) {
+					tabPane.getSelectionModel().select(refTab);
+					return;
+				}
+				tabPane.getTabs().add(refTab);
+				tabPane.getSelectionModel().selectLast();
+			};
+		case AJUDA:
+			return e -> {
+				new HelpDialog().showAndWait();
+			};
+		case SAIR:
+			return e -> {
+				if (Factory.showConfirmation("Tem certeza que deseja sair?")) {		
+					System.exit(0);
+				}
+			};
+		default:
+			return null;
+		}
+	}
+}

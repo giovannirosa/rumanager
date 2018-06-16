@@ -1,0 +1,11 @@
+package controller.database;
+
+public abstract class Database {
+	
+	protected String table;
+	
+	
+	public boolean save() {
+		
+	}
+}

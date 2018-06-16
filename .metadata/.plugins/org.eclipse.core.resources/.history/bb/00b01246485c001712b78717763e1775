@@ -1,0 +1,5 @@
+package view.pane;
+
+public class FinalPane extends UtilPane {
+
+}

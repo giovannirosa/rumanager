@@ -1,0 +1,20 @@
+package view.utils;
+
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
+public class IngUtilPane extends VBox {
+	
+	HBox buttonPane = new HBox();
+	
+	Button addBut = new Button("Adicionar");
+	Button delBut = new Button("Deletar");
+	
+	ComboBox<String> ingBox = new ComboBox<>();
+	
+	public IngUtilPane() {
+		
+	}
+}

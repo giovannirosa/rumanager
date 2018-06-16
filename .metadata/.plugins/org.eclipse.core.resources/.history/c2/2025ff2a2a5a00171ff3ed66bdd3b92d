@@ -1,0 +1,63 @@
+package controller.database;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import model.Model;
+import model.Rec;
+import view.utils.Factory;
+
+public class RecDB extends Database {
+	
+	public RecDB() {
+		table = "rec";
+		file = new File (Factory.RU_PATH+"\\"+table+".txt");
+		checkDatabase();
+	}
+
+	@Override
+	public void get(Map<Integer, Model> map) {
+		map.clear();
+		
+		for (String line : records) {
+			JSONObject obj;
+			try {
+				obj = new JSONObject(line);
+				map.put(obj.getInt("id"), new Rec(obj.getInt("id"), obj.getString("nome"),
+						obj.getString("modo"), obj.getInt("porc"), obj.getInt("calor"), 
+						Arrays.asList(obj.getString("lista").split(","))));
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void set(Map<Integer, Model> map) {
+		records.clear();
+		
+		for (Model m : map.values()) {
+			Rec r = (Rec) m;
+			JSONObject obj = new JSONObject();
+			
+			try {
+				obj.put("id", r.getId());
+				obj.put("nome", r.getNome());
+				obj.put("modo", r.getModoPreparo());
+				obj.put("porc", r.getNoPorcoes());
+				obj.put("calor", r.getValorCalorico());
+				obj.put("lista", r.getListaIngrediente());
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			
+			records.add(obj.toString());
+		}
+	}
+}

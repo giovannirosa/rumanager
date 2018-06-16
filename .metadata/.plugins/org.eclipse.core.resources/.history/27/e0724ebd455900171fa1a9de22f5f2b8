@@ -1,0 +1,26 @@
+package view.utils;
+
+import javafx.scene.layout.HBox;
+
+public class HeaderPane extends HBox {
+	
+	HBox userPane = new HBox(20);
+	LogoPane logoPane = new LogoPane(100,100);
+	LoggedPane loggedPane = new LoggedPane();
+	TitlePane titlePane = new TitlePane();
+	
+	public HeaderPane() {
+		this.setHgap(60);
+		this.add(logoPane, 0, 0);
+		this.add(titlePane, 1, 0);
+		this.add(userPane, 2, 0);
+		
+		userPane.setAlignment(Pos.CENTER_RIGHT);
+		userPane.getChildren().add(loggedPane);
+		
+		this.getColumnConstraints().add(new ColumnConstraints(Factory.screen.getWidth()*0.15));
+		this.getColumnConstraints().add(new ColumnConstraints(Factory.screen.getWidth()*0.586));
+		this.getColumnConstraints().add(new ColumnConstraints(Factory.screen.getWidth()*0.15));
+	}
+
+}

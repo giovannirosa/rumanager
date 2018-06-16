@@ -1,0 +1,61 @@
+package model.table;
+
+import javafx.beans.property.SimpleStringProperty;
+
+public class TRecModel implements TableModel {
+
+	private SimpleStringProperty id;
+	private SimpleStringProperty name;
+	private SimpleStringProperty cal;
+	private SimpleStringProperty porc;
+	
+	public TRecModel(int i, String n, int q, String u) {
+		id = new SimpleStringProperty(Integer.toString(i));
+		name = new SimpleStringProperty(n);
+		cal = new SimpleStringProperty(Integer.toString(q));
+		porc = new SimpleStringProperty(u);
+	}
+	
+	public TRecModel() {
+		id = new SimpleStringProperty("");
+		name = new SimpleStringProperty("");
+		cal = new SimpleStringProperty("");
+		porc = new SimpleStringProperty("");
+	}
+
+	public String getId() {
+		return id.get();
+	}
+
+	public void setId(String id) {
+		this.id.set(id);
+	}
+
+	public String getName() {
+		return name.get();
+	}
+
+	public void setName(String name) {
+		this.name.set(name);
+	}
+
+	public String getQtde() {
+		return cal.get();
+	}
+
+	public void setQtde(String value) {
+		this.cal.set(value);
+	}
+
+	public String getUnidade() {
+		return porc.get();
+	}
+
+	public void setUnidade(String unidade) {
+		this.porc.set(unidade);
+	}
+
+	public String getDesc() {
+		return name.get();
+	}
+}

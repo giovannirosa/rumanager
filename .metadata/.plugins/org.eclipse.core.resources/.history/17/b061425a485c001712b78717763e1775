@@ -1,0 +1,24 @@
+package view.pane;
+
+import model.table.TableModel;
+import view.table.Table;
+import view.tabs.AbstractTab;
+import view.utils.UtilPane;
+
+public class FinalPane extends UtilPane {
+
+	public FinalPane(Table<TableModel> table, AbstractTab tab) {
+		super(table, tab);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void addMode() {}
+
+	@Override
+	public void editMode(TableModel model) {}
+
+	@Override
+	public void clear() {}
+
+}

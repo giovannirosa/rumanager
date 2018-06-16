@@ -1,0 +1,80 @@
+package controller.database;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Map;
+
+import model.Model;
+
+public abstract class Database {
+	
+	protected String table;
+	
+	PreparedStatement selectStmt;
+	public PreparedStatement getSelectStmt(String table) throws SQLException{
+    	if( selectStmt == null ){
+    		if( conn != null && !conn.isClosed() )
+    			selectStmt  = conn.prepareStatement("SELECT * FROM "+table);
+    		else
+    			throw new RuntimeException("Connection must be openned");
+    	}
+    	return selectStmt;
+    }
+	
+	PreparedStatement selectIdStmt;
+	public PreparedStatement getSelectIdStmt(String table) throws SQLException{
+    	if( selectIdStmt == null ){
+    		if( conn != null && !conn.isClosed() )
+    			selectIdStmt  = conn.prepareStatement("SELECT id FROM "+table+" WHERE name=?");
+    		else
+    			throw new RuntimeException("Connection must be openned");
+    	}
+    	return selectIdStmt;
+    }
+	
+	PreparedStatement deleteStmt;
+	public PreparedStatement getDeleteStmt(String table) throws SQLException{
+    	if( deleteStmt == null ){
+    		if( conn != null && !conn.isClosed() )
+    			deleteStmt  = conn.prepareStatement("DELETE FROM "+table+" WHERE id=?");
+    		else
+    			throw new RuntimeException("Connection must be openned");
+    	}
+    	return deleteStmt;
+	}
+	
+	PreparedStatement truncateStmt;
+	public PreparedStatement getTruncateStmt(String table) throws SQLException{
+    	if( truncateStmt == null ){
+    		if( conn != null && !conn.isClosed() )
+    			truncateStmt  = conn.prepareStatement("TRUNCATE TABLE "+table);
+    		else
+    			throw new RuntimeException("Connection must be openned");
+    	}
+    	return truncateStmt;
+    }
+	
+	PreparedStatement resetId;
+	public PreparedStatement getResetIdStmt(String table) throws SQLException{
+    	if( resetId == null ){
+    		if( conn != null && !conn.isClosed() )
+    			resetId  = conn.prepareStatement("ALTER TABLE "+table+" AUTO_INCREMENT = 1");
+    		else
+    			throw new RuntimeException("Connection must be openned");
+    	}
+    	return resetId;
+    }
+
+	public abstract int selectId(String n);
+	public abstract boolean update(Model i);
+	public abstract Map<Integer,Model> listAll();
+	public abstract boolean insert(Model i);
+	public abstract boolean delete(int id) throws SQLException;
+	public boolean truncate() throws SQLException {
+		PreparedStatement stmt = getTruncateStmt(table);
+		
+		return stmt.executeUpdate() == 0;
+	}
+	public abstract boolean resetId() throws SQLException;
+}

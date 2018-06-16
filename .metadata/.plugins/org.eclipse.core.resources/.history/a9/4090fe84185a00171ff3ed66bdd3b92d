@@ -1,0 +1,15 @@
+package controller.database;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import model.Model;
+
+public class IngDB extends Database {
+
+	@Override
+	public Map<Integer, Model> translate() {
+		Map<Integer, Model> map = new HashMap<>();
+		return null;
+	}
+}

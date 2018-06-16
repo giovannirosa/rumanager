@@ -1,0 +1,79 @@
+package view;
+
+import controller.Actions;
+import controller.Actions.Action;
+import controller.IngControl;
+import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import view.tabs.IngTab;
+import view.tabs.InitTab;
+import view.utils.Factory;
+
+public class Main extends Stage {
+	
+	BorderPane geralPanel = new BorderPane();
+	public static TabPane tabPane = new TabPane();
+	
+	public static IngControl ingControl = new IngControl();
+	
+	public static IngTab ingTab = new IngTab("Ingredientes");
+	
+	MenuBar menuBar = new MenuBar();
+	
+	public MenuItem menuHelp = new MenuItem("Ajuda");
+	public MenuItem menuExit = new MenuItem("Sair");
+	Menu menuOptions = new Menu("Opções");
+	
+	public MenuItem menuRec = new MenuItem("Receita");
+	public MenuItem menuIng = new MenuItem("Ingrediente");
+	public MenuItem menuRef = new MenuItem("Refeição");
+	Menu menuReg = new Menu("Cadastrar");
+	
+	Scene scene;
+	
+	private static Main modal;
+	
+	public static Main getModal() {
+		return modal;
+	}
+	
+
+	public Main() {
+		modal = this;
+		this.setTitle("RU Manager");
+		this.setMaximized(true);
+		this.setResizable(false);
+		
+		Factory.log("Opening RU Manager!");
+		
+		setActions();
+		
+		menuOptions.getItems().addAll(menuHelp, menuExit);
+		menuReg.getItems().addAll(menuRec,menuIng,menuRef);
+
+		menuBar.getMenus().addAll(menuReg,menuOptions);
+		
+		tabPane.getTabs().add(new InitTab());
+		tabPane.setId("main-tab");
+		
+		geralPanel.setCenter(tabPane);
+		
+		scene = new Scene(new VBox());
+		((VBox)scene.getRoot()).getChildren().addAll(menuBar,geralPanel);
+        this.setScene(scene);
+        this.getIcons().add(new Image(this.getClass().getResource("cooker.png").toExternalForm()));
+        scene.getStylesheets().addAll
+        (this.getClass().getResource("Style.css").toExternalForm());
+	}
+	
+	private void setActions() {
+		menuExit.setOnAction(Actions.getAction(Action.EXIT));
+	}
+}

@@ -1,0 +1,20 @@
+package view.utils;
+
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+
+public class HeaderPane extends VBox {
+	
+	LogoPane logoPane = new LogoPane(200,200);
+	TitlePane titlePane = new TitlePane();
+	
+	public HeaderPane() {
+		this.setSpacing(10);
+		this.add(logoPane, 0, 0);
+		this.add(titlePane, 1, 0);
+		
+		this.getColumnConstraints().add(new ColumnConstraints(Factory.screen.getWidth()*0.30));
+		this.getColumnConstraints().add(new ColumnConstraints(Factory.screen.getWidth()*0.586));
+	}
+}

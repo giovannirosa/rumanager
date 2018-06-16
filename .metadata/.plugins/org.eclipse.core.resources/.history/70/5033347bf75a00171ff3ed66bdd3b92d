@@ -1,0 +1,38 @@
+package view.pane;
+
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import model.table.TableModel;
+import view.table.Table;
+import view.tabs.AbstractTab;
+import view.utils.UtilPane;
+
+public class RecViewPane extends UtilPane {
+
+	VBox geralPane = new VBox(20);
+	
+	Label idLabel = new Label("ID:");
+	Label nomeLabel = new Label("Nome:");
+	Label modoLabel = new Label("Modo de Preparo:");
+	Label porcLabel = new Label("Porções:");
+	Label calorLabel = new Label("Valor Calórico:");
+	Label ingLabel = new Label("Ingredientes:");
+	
+	public RecViewPane(Table<TableModel> table, AbstractTab tab) {
+		super(table, tab);
+	}
+
+	@Override
+	public void addMode() {
+		
+	}
+
+	@Override
+	public void editMode(TableModel model) {
+	}
+
+	@Override
+	public void clear() {
+	}
+}

@@ -1,0 +1,12 @@
+package view.pane;
+
+import javafx.stage.Stage;
+
+public class RecViewPane extends Stage {
+	
+	
+	
+	public RecViewPane() {
+		
+	}
+}

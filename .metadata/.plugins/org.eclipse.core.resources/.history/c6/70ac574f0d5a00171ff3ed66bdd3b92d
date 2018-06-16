@@ -1,0 +1,40 @@
+package view.tabs;
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import view.utils.HeaderPane;
+
+public class InitTab extends Tab {
+	
+	VBox geralPane = new VBox(20);
+	GridPane buttonPane = new GridPane();
+	VBox buttonPane2 = new VBox(20);
+	HeaderPane headerPane = new HeaderPane();
+	
+	Button recBut = new Button("Cadastrar Receita");
+	Button ingBut = new Button("Cadastrar Ingrediente");
+	Button refBut = new Button("Cadastrar Refeição");
+	Button exitBut = new Button("Sair");
+	
+	public InitTab() {
+		this.setText("RU Manager");
+		this.setContent(geralPane);
+		this.setClosable(false);
+		
+		buttonPane.setPadding(new Insets(20));
+		buttonPane.setAlignment(Pos.CENTER);
+		buttonPane.add(recBut, 0, 0);
+		buttonPane.add(ingBut, 0, 1);
+		buttonPane.add(refBut, 0, 2);
+		
+		buttonPane2.setAlignment(Pos.CENTER);
+		buttonPane2.getChildren().addAll(buttonPane,exitBut);
+		
+		geralPane.setAlignment(Pos.CENTER);
+		geralPane.getChildren().addAll(headerPane,buttonPane2);
+	}
+}

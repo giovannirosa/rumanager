@@ -1,0 +1,14 @@
+package view.tabs;
+
+import javafx.scene.control.Tab;
+import view.utils.HeaderPane;
+
+public class InitTab extends Tab {
+	
+	HeaderPane headerPane = new HeaderPane();
+	
+	public InitTab() {
+		this.setText("RU Manager");
+		this.setContent(headerPane);
+	}
+}
